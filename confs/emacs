@@ -1,0 +1,11 @@
+;; s. rannou <mxs@sbrk.org>
+
+;; misc settings
+(setq make-backup-files nil)		; no *~
+(menu-bar-mode -1)			; no menu
+(setq-default truncate-lines t)		; don't jump on large lines
+(setq column-number-mode t)		; display column number
+(display-time-mode t)			; display time
+(setq vc-follow-symlinks t)		; be nice with symlinks
+(set-language-environment "UTF-8")	; be nice with accents
+(setq confirm-kill-emacs 'yes-or-no-p)	; ask before killing
