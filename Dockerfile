@@ -17,6 +17,10 @@ RUN apt-get install -q -y									\
     	    zsh											\
 	    tmux										\
 	    htop										\
+	    pep8										\
+	    golang										\
+	    python-sphinx									\
+	    jekyll										\
     && apt-get clean -q -y
 
 # Setup ssh
@@ -36,7 +40,8 @@ RUN yes | adduser --disabled-password mxs --shell /bin/zsh					\
 ADD confs/motd /etc/motd
 ADD confs/emacs /home/mxs/.emacs
 ADD confs/gitconfig /home/mxs/.gitconfig
-RUN chown mxs:mxs /home/mxs/.emacs /home/mxs/.gitconfig
+ADD confs/zsh /home/mxs/.zshrc
+RUN chown mxs:mxs /home/mxs/.emacs /home/mxs/.gitconfig /home/mxs/.zshrc
 
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
