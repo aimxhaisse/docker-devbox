@@ -28,3 +28,5 @@ The Dockerfile is split in two parts:
 
 * a generic part containing what you probably need
 * a non-generic part that you should tweak.
+
+    docker run -d -h mxs-devbox --name mxs-devbox mxs-devbox
