@@ -10,6 +10,7 @@ RUN apt-get install -q -y									\
     	    sudo										\
     	    wget										\
 	    python										\
+	    python-dev										\
 	    python-virtualenv									\
 	    openssh-server									\
    	    emacs23-nox										\
@@ -21,6 +22,10 @@ RUN apt-get install -q -y									\
 	    golang										\
 	    python-sphinx									\
 	    jekyll										\
+	    php5-cgi										\
+	    aptitude										\
+	    libxml2-dev										\
+	    libxslt1-dev									\
     && apt-get clean -q -y
 
 # Setup ssh
