@@ -26,6 +26,7 @@ RUN apt-get install -q -y									\
 	    aptitude										\
 	    libxml2-dev										\
 	    libxslt1-dev									\
+	    nginx										\
     && apt-get clean -q -y
 
 # Setup ssh
@@ -48,5 +49,5 @@ ADD confs/gitconfig /home/mxs/.gitconfig
 ADD confs/zsh /home/mxs/.zshrc
 RUN chown mxs:mxs /home/mxs/.emacs /home/mxs/.gitconfig /home/mxs/.zshrc
 
-EXPOSE 22
+EXPOSE 22 80
 CMD ["/usr/sbin/sshd", "-D"]
