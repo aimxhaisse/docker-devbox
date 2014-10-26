@@ -26,11 +26,15 @@ RUN apt-get install -q -y									\
 	    aptitude										\
 	    libxml2-dev										\
 	    libxslt1-dev									\
-	    nginx										\
+	    rubygems										\
+	    ruby-dev										\
     && apt-get clean -q -y
 
 # Setup ssh
 RUN mkdir /var/run/sshd
+
+# Middleman
+RUN gem install middleman
 
 # Setup user mxs
 RUN yes | adduser --disabled-password mxs --shell /bin/zsh					\
@@ -49,5 +53,5 @@ ADD confs/gitconfig /home/mxs/.gitconfig
 ADD confs/zsh /home/mxs/.zshrc
 RUN chown mxs:mxs /home/mxs/.emacs /home/mxs/.gitconfig /home/mxs/.zshrc
 
-EXPOSE 22 80
+EXPOSE 22 8080
 CMD ["/usr/sbin/sshd", "-D"]
