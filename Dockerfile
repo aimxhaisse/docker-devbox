@@ -34,7 +34,7 @@ RUN apt-get install -q -y									\
 RUN mkdir /var/run/sshd
 
 # Middleman
-RUN gem install middleman
+RUN gem install middleman execjs therubyracer
 
 # Setup user mxs
 RUN yes | adduser --disabled-password mxs --shell /bin/zsh					\
