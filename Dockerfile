@@ -34,7 +34,7 @@ RUN apt-get install -q -y									\
 RUN mkdir /var/run/sshd
 
 # Middleman
-RUN gem install middleman execjs therubyracer
+RUN gem install middleman-blog execjs therubyracer bitters
 
 # Setup user mxs
 RUN yes | adduser --disabled-password mxs --shell /bin/zsh					\
@@ -53,5 +53,5 @@ ADD confs/gitconfig /home/mxs/.gitconfig
 ADD confs/zsh /home/mxs/.zshrc
 RUN chown mxs:mxs /home/mxs/.emacs /home/mxs/.gitconfig /home/mxs/.zshrc
 
-EXPOSE 22 8080
+EXPOSE 22 20000
 CMD ["/usr/sbin/sshd", "-D"]
