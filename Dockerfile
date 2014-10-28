@@ -28,6 +28,7 @@ RUN apt-get install -q -y									\
 	    libxslt1-dev									\
 	    rubygems										\
 	    ruby-dev										\
+	    unzip										\
     && apt-get clean -q -y
 
 # Setup ssh
