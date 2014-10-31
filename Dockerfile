@@ -34,9 +34,6 @@ RUN apt-get install -q -y									\
 # Setup ssh
 RUN mkdir /var/run/sshd
 
-# Middleman
-RUN gem install middleman-blog execjs therubyracer bitters
-
 # Setup user mxs
 RUN yes | adduser --disabled-password mxs --shell /bin/zsh					\
     && mkdir -p /home/mxs/.ssh/									\
