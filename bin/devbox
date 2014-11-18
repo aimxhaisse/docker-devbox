@@ -1,0 +1,23 @@
+#!/usr/bin/env python2.7
+
+import subprocess
+from docker import Client
+
+IMAGE_NAME='mxs-devbox'
+CONTAINER_NAME='mxs-devbox'
+
+def get_container(cli):
+     try:
+         devbox = cli.inspect_container(CONTAINER_NAME)
+         return devbox['NetworkSettings']['IPAddress']
+     except:
+         cli.start(IMAGE_NAME, port_bindings={20000: ('127.0.0.1', )}, binds={'/home/mxs/.ssh': {'bind': '/home/mxs/.ssh', 'ro': True}})        
+         devbox = cli.inspect_container(CONTAINER_NAME)
+         return devbox['NetworkSettings']['IPAddress']
+
+def main():
+    cli = Client(base_url='unix://var/run/docker.sock')
+    subprocess.call("ssh %s" % get_container(cli), shell=True)
+
+if __name__ == '__main__':
+    main()
