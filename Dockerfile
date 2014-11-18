@@ -21,15 +21,18 @@ RUN apt-get install -q -y									\
 	    pep8										\
 	    golang										\
 	    python-sphinx									\
-	    jekyll										\
 	    php5-cgi										\
 	    aptitude										\
-	    libxml2-dev										\
-	    libxslt1-dev									\
+	    locales										\
 	    rubygems										\
 	    ruby-dev										\
 	    unzip										\
+	    curl										\
     && apt-get clean -q -y
+
+# Locales
+RUN sed -i 's/# \(en_US.UTF-8.*\)/\1/' /etc/locale.gen						\
+    && locale-gen en_US en_US.UTF-8
 
 # Setup ssh
 RUN mkdir /var/run/sshd
@@ -43,6 +46,12 @@ RUN yes | adduser --disabled-password mxs --shell /bin/zsh					\
     && chmod 600 /home/mxs/.ssh/authorized_keys							\
     && echo '%mxs   ALL= NOPASSWD: ALL' >> /etc/sudoers						\
     && sudo -u mxs sh -c 'cd /home/mxs ; wget http://install.ohmyz.sh -O - | sh || true'
+
+# Blog && Nodejs
+RUN curl -sL https://deb.nodesource.com/setup | bash 						\
+    && apt-get -q -y install nodejs								\
+    && gem install redcarpet jekyll								\
+    && apt-get clean -q -y
 
 # Confs and files
 ADD confs/motd /etc/motd

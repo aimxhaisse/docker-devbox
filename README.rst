@@ -30,3 +30,6 @@ The Dockerfile is split in two parts:
 * a non-generic part that you should tweak.
 
     docker run -d -h mxs-devbox --name mxs-devbox mxs-devbox
+
+You can also edit and use the `devbox` script, to start the container
+if it is not started, and ssh into it.
