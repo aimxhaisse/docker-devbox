@@ -26,6 +26,8 @@ RUN apt-get install -q -y									\
 	    locales										\
 	    rubygems										\
 	    ruby-dev										\
+	    linkchecker										\
+	    links										\
 	    unzip										\
 	    curl										\
     && apt-get clean -q -y
