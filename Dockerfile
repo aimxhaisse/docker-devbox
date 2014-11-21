@@ -30,6 +30,7 @@ RUN apt-get install -q -y									\
 	    links										\
 	    unzip										\
 	    curl										\
+	    imagemagick										\
     && apt-get clean -q -y
 
 # Locales
