@@ -67,6 +67,7 @@ RUN chown mxs:mxs /home/mxs/.emacs /home/mxs/.gitconfig /home/mxs/.zshrc
 
 # Dockerception
 ADD bin/wrapdocker /usr/local/bin/wrapdocker
+RUN pip install fig
 
 ADD bin/init /init-container
 EXPOSE 22 20000
