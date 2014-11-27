@@ -18,7 +18,7 @@ def get_container():
           cli.create_container(image=IMAGE_NAME, hostname=CONTAINER_NAME, ports=[20000], name=CONTAINER_NAME)
      devbox = cli.inspect_container(CONTAINER_NAME)
      if not devbox['State']['Running']:
-          cli.start(IMAGE_NAME, port_bindings={20000: ('127.0.0.1', 20000)}, binds={'/home/mxs/.ssh': {'bind': '/home/mxs/.ssh', 'ro': True}})
+          cli.start(IMAGE_NAME, privileged=True, port_bindings={20000: ('127.0.0.1', 20000)}, binds={'/home/mxs/.ssh': {'bind': '/home/mxs/.ssh', 'ro': True}})
           devbox = cli.inspect_container(CONTAINER_NAME)
      return devbox['NetworkSettings']['IPAddress']
 
