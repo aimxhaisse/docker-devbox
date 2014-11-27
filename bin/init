@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#
+# s. rannou <mxs@sbrk.org>
+
+/usr/local/bin/wrapdocker
+/usr/sbin/sshd -D

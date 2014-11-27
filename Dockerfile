@@ -1,4 +1,4 @@
-FROM debian:wheezy
+FROM debian:testing
 MAINTAINER s. rannou <mxs@sbrk.org>
 
 # Distro
@@ -11,9 +11,10 @@ RUN apt-get install -q -y									\
     	    wget										\
 	    python										\
 	    python-dev										\
+	    python-pip										\
 	    python-virtualenv									\
 	    openssh-server									\
-   	    emacs23-nox										\
+   	    emacs24-nox										\
 	    git-core										\
     	    zsh											\
 	    tmux										\
@@ -31,6 +32,9 @@ RUN apt-get install -q -y									\
 	    unzip										\
 	    curl										\
 	    imagemagick										\
+	    nodejs										\
+	    npm											\
+	    docker.io										\
     && apt-get clean -q -y
 
 # Locales
@@ -42,6 +46,7 @@ RUN mkdir /var/run/sshd
 
 # Setup user mxs
 RUN yes | adduser --disabled-password mxs --shell /bin/zsh					\
+    && usermod -a -G docker mxs									\
     && mkdir -p /home/mxs/.ssh/									\
     && wget https://github.com/aimxhaisse.keys -O /home/mxs/.ssh/authorized_keys		\
     && chown -R mxs:mxs /home/mxs								\
@@ -50,11 +55,8 @@ RUN yes | adduser --disabled-password mxs --shell /bin/zsh					\
     && echo '%mxs   ALL= NOPASSWD: ALL' >> /etc/sudoers						\
     && sudo -u mxs sh -c 'cd /home/mxs ; wget http://install.ohmyz.sh -O - | sh || true'
 
-# Blog && Nodejs
-RUN curl -sL https://deb.nodesource.com/setup | bash 						\
-    && apt-get -q -y install nodejs								\
-    && gem install redcarpet jekyll								\
-    && apt-get clean -q -y
+# Blog
+RUN gem install redcarpet jekyll
 
 # Confs and files
 ADD confs/motd /etc/motd
@@ -63,5 +65,9 @@ ADD confs/gitconfig /home/mxs/.gitconfig
 ADD confs/zsh /home/mxs/.zshrc
 RUN chown mxs:mxs /home/mxs/.emacs /home/mxs/.gitconfig /home/mxs/.zshrc
 
+# Dockerception
+ADD bin/wrapdocker /usr/local/bin/wrapdocker
+
+ADD bin/init /init-container
 EXPOSE 22 20000
-CMD ["/usr/sbin/sshd", "-D"]
+CMD ["/init-container"]
