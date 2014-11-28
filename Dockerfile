@@ -35,6 +35,7 @@ RUN apt-get install -q -y									\
 	    nodejs										\
 	    npm											\
 	    docker.io										\
+	    yaml-mode										\
     && apt-get clean -q -y
 
 # Locales
