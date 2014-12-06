@@ -1,4 +1,4 @@
-FROM debian:testing
+FROM debian:jessie
 MAINTAINER s. rannou <mxs@sbrk.org>
 
 # Distro
