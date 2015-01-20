@@ -49,6 +49,7 @@ RUN mkdir /var/run/sshd
 RUN yes | adduser --disabled-password mxs --shell /bin/zsh					\
     && usermod -a -G docker mxs									\
     && mkdir -p /home/mxs/.ssh/									\
+    && mkdir -p /home/mxs/.config/htop								\
     && wget https://github.com/aimxhaisse.keys -O /home/mxs/.ssh/authorized_keys		\
     && chown -R mxs:mxs /home/mxs								\
     && chmod 700 /home/mxs/.ssh									\
@@ -64,6 +65,7 @@ ADD confs/motd /etc/motd
 ADD confs/emacs /home/mxs/.emacs
 ADD confs/gitconfig /home/mxs/.gitconfig
 ADD confs/zsh /home/mxs/.zshrc
+ADD confs/htoprc /home/mxs/.config/htop/htoprc
 RUN chown mxs:mxs /home/mxs/.emacs /home/mxs/.gitconfig /home/mxs/.zshrc
 
 # Dockerception
