@@ -36,6 +36,7 @@ RUN apt-get install -q -y									\
 	    npm											\
 	    docker.io										\
 	    yaml-mode										\
+	    netcat										\
 	    s3cmd										\
     && apt-get clean -q -y
 
