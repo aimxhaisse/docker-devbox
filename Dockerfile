@@ -39,6 +39,7 @@ RUN apt-get install -q -y									\
 	    netcat										\
 	    s3cmd										\
 	    bc											\
+	    u-boot-utils									\
     && apt-get clean -q -y
 
 # Locales
