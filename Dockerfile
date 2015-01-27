@@ -40,6 +40,7 @@ RUN apt-get install -q -y									\
 	    s3cmd										\
 	    bc											\
 	    u-boot-utils									\
+	    libncurses-dev									\
     && apt-get clean -q -y
 
 # Locales
