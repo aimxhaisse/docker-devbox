@@ -38,6 +38,7 @@ RUN apt-get install -q -y									\
 	    yaml-mode										\
 	    netcat										\
 	    s3cmd										\
+	    bc											\
     && apt-get clean -q -y
 
 # Locales
