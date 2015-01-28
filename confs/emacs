@@ -9,3 +9,4 @@
 (setq vc-follow-symlinks t)		; be nice with symlinks
 (set-language-environment "UTF-8")	; be nice with accents
 (setq confirm-kill-emacs 'yes-or-no-p)	; ask before killing
+(setq c-default-style "linux")		; Linux style
