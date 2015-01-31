@@ -41,6 +41,7 @@ RUN apt-get install -q -y									\
 	    bc											\
 	    u-boot-utils									\
 	    libncurses-dev									\
+	    w3m											\
     && apt-get clean -q -y
 
 # Locales
