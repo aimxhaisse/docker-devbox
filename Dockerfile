@@ -39,7 +39,7 @@ RUN apt-get install -q -y									\
 	    netcat										\
 	    s3cmd										\
 	    bc											\
-	    u-boot-utils									\
+	    u-boot-tools									\
 	    libncurses-dev									\
 	    w3m											\
     && apt-get clean -q -y
